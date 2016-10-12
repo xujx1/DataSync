@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:annotation-config/>
+
+    <!-- 自动扫描注解的bean -->
+    <context:component-scan base-package="com.xujinxin.datasync.service"/>
+    <context:component-scan base-package="com.xujinxin.datasync.util"/>
+    <!-- 引入配置文件 -->
+    <context:property-placeholder location="classpath*:properties/*.properties"/>
+
+    <!--TODO 为什么这边引入了spring-mvc.xml 单元测试就会报加载配置文件异常错误-->
+    <import resource="classpath*:spring/spring-redis.xml"/>
+    <import resource="classpath*:spring/spring-aop.xml"/>
+    <import resource="classpath*:spring/spring-task.xml"/>
+    <import resource="classpath*:spring/spring-mybatis.xml"/>
+    <import resource="classpath*:spring/spring-rest.xml"/>
+</beans>
