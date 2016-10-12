@@ -1,6 +1,8 @@
 package com.xujinxin.datasync.vo;
 
 import com.xujinxin.datasync.enums.ResponseType;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
  * 公共返回数据接口
@@ -79,5 +81,10 @@ public class ResponseVo {
         public ResponseVo build() {
             return new ResponseVo(this);
         }
+
+    }
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
     }
 }

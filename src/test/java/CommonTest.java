@@ -2,10 +2,12 @@ import com.xujinxin.datasync.bean.User;
 import com.xujinxin.datasync.enums.ResponseType;
 import com.xujinxin.datasync.service.UserService;
 import com.xujinxin.datasync.util.redis.RedisOperationService;
+import com.xujinxin.datasync.vo.ResponseVo;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.concurrent.TimeUnit;
 
@@ -13,6 +15,9 @@ public class CommonTest extends SpringTestCase {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private RestTemplate restTemplate;
 
     @Autowired
     private RedisOperationService redisOperationService;
@@ -66,5 +71,10 @@ public class CommonTest extends SpringTestCase {
         redisOperationService.setCache("test", user, 300, TimeUnit.SECONDS);
         System.out.println(redisOperationService.getCache("test", User.class));
         redisOperationService.clear();
+    }
+
+    @Test
+    public void restTemplateTest() {
+        System.out.println( restTemplate.getForEntity("http://localhost:8080/DataSync/user/selectAll", ResponseVo.class).getBody());
     }
 }

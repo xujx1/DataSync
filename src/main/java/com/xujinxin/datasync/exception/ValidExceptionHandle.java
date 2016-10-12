@@ -20,7 +20,7 @@ public class ValidExceptionHandle {
     @ExceptionHandler(value = RuntimeException.class)
     public ResponseEntity<ResponseVo> handle(Exception e) {
         String message = e instanceof ValidException ? ErrorType.getMessageByCode(e.getMessage()) : e.getMessage();
-        LOGGER.error("{}", e);
+        LOGGER.error(e);
         return new ResponseEntity<ResponseVo>(new ResponseVo.Builder().success(false).msg(ResponseType.FAIL.getCode()).data(message).build(), HttpStatus.OK);
     }
 }
