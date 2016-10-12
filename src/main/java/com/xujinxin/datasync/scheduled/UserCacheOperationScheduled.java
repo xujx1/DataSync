@@ -19,7 +19,7 @@ public class UserCacheOperationScheduled {
     @Autowired
     private RedisOperationService redisOperationService;
 
-    @Scheduled(cron = "0 21 17 * * ?")
+    @Scheduled(cron = "0 0 0 * * ?")
     public void test() {
         LOGGER.info("执行定时任务，清除缓存");
         redisOperationService.clear();

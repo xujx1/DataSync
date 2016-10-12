@@ -29,6 +29,7 @@ public class UserInterceptor extends HandlerInterceptorAdapter {
         Enumeration<String> parameterNames = request.getParameterNames();
         while (parameterNames.hasMoreElements()) {
             String parameterName = parameterNames.nextElement();
+            //TODO 这边获取请求参数的方式其实是不合理的
             requestBody.put(parameterName, request.getParameterValues(parameterName)[0]);
         }
         //实现map转对象

@@ -6,9 +6,8 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
  * 公共返回数据接口
- * success 操作结果,默认true
+ * flag 操作结果,默认true
  * msg 操作信息
- * errorCode 操作码
  * data 返回数据
  * <p>
  * 应该优先使用建造者模式生成对象
@@ -83,6 +82,7 @@ public class ResponseVo {
         }
 
     }
+
     @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);

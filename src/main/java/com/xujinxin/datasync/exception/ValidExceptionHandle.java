@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
+/**
+ * 异常集中处理类
+ */
 @EnableWebMvc
 @ControllerAdvice
 public class ValidExceptionHandle {
