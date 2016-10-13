@@ -7,6 +7,7 @@
            http://www.springframework.org/schema/context
            http://www.springframework.org/schema/context/spring-context.xsd">
 
+    <!-- 识别@Autowired注解-->
     <context:annotation-config/>
 
     <!-- 自动扫描注解的bean -->
@@ -21,4 +22,7 @@
     <import resource="classpath*:spring/spring-task.xml"/>
     <import resource="classpath*:spring/spring-mybatis.xml"/>
     <import resource="classpath*:spring/spring-rest.xml"/>
+    <!--TODO 为什么这边引入了spring-activemq.xml 单元测试就会报加载配置文件异常错误-->
+    <import resource="classpath*:spring/spring-activemq.xml"/>
+
 </beans>

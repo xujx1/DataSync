@@ -15,16 +15,16 @@
           class="com.alibaba.druid.pool.DruidDataSource">
         <!-- 使用properties来配置 -->
         <property name="driverClassName">
-            <value>${jdbc_driverClassName}</value>
+            <value>${jdbc.driverClassName}</value>
         </property>
         <property name="url">
-            <value>${jdbc_url}</value>
+            <value>${jdbc.url}</value>
         </property>
         <property name="username">
-            <value>${jdbc_username}</value>
+            <value>${jdbc.username}</value>
         </property>
         <property name="password">
-            <value>${jdbc_password}</value>
+            <value>${jdbc.password}</value>
         </property>
 
         <!-- 配置初始化大小、最小、最大 -->

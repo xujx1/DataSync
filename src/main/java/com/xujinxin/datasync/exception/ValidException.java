@@ -7,6 +7,8 @@ import com.xujinxin.datasync.enums.ErrorType;
  */
 public class ValidException extends RuntimeException {
 
+    private static final long serialVersionUID = 3284273643041868087L;
+
     public ValidException(ErrorType errorType) {
         super(errorType.getCode());
     }

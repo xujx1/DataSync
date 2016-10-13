@@ -10,6 +10,8 @@
 
     <context:property-placeholder location="classpath:properties/redis.properties"/>
 
+    <!--配置参考：  http://shift-alt-ctrl.iteye.com/blog/1886831-->
+
     <!--配置redis-->
     <!-- spring data redis -->
     <bean id="jedisConnectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">

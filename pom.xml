@@ -256,6 +256,19 @@
             <version>2.5.2</version>
         </dependency>
 
+        <!--引入activemq-->
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jms</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.activemq</groupId>
+            <artifactId>activemq-all</artifactId>
+            <version>5.14.1</version>
+        </dependency>
+
     </dependencies>
 
     <build>

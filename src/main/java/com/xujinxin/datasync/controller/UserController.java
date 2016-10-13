@@ -16,7 +16,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/selectAll", method = RequestMethod.GET)
+    @RequestMapping(value = "/select-all", method = RequestMethod.GET)
     @ResponseBody
     public ResponseVo selectAll() {
         return new ResponseVo.Builder().data(userService.selectAll()).build();
