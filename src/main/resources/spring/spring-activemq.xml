@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jms="http://www.springframework.org/schema/jms"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd
+           http://www.springframework.org/schema/jms
+           http://www.springframework.org/schema/jms/spring-jms.xsd">
+
+    <!--配置参考：http://spring.cndocs.tk/jms.html-->
+
+    <!--引入activemq配置-->
+    <context:property-placeholder location="classpath:properties/activemq.properties"/>
+
+    <!--监听注解配置-->
+    <jms:annotation-driven/>
+
+    <!-- 配置JMS连接工厂 -->
+    <bean id="jmsConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+        <property name="brokerURL" value="${activemq.brokerUrl}"/>
+    </bean>
+
+    <bean id="simpleJmsConnectionFactory" class="org.springframework.jms.connection.CachingConnectionFactory">
+        <constructor-arg ref="jmsConnectionFactory"/>
+        <property name="sessionCacheSize" value="${activemq.sessionCacheSize}"/>
+    </bean>
+
+    <!-- 监听queue-->
+    <bean id="queueListenerContainerFactory" class="org.springframework.jms.config.DefaultJmsListenerContainerFactory">
+        <property name="connectionFactory" ref="simpleJmsConnectionFactory"/>
+        <property name="errorHandler" ref="jmsErrorHandler"/>
+        <!-- 消息转换器 -->
+        <property name="messageConverter" ref="validMessageConverter"/>
+    </bean>
+
+    <!-- 监听topic-->
+    <bean id="topicListenerContainerFactory" class="org.springframework.jms.config.DefaultJmsListenerContainerFactory">
+        <property name="connectionFactory" ref="simpleJmsConnectionFactory"/>
+        <property name="errorHandler" ref="jmsErrorHandler"/>
+    </bean>
+
+    <!-- JMS Template -->
+    <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+        <!-- 设置消息保存时间-->
+        <property name="connectionFactory" ref="simpleJmsConnectionFactory"/>
+        <property name="explicitQosEnabled" value="true"/>
+        <property name="timeToLive" value="${activemq.timeToLive}"/>
+    </bean>
+
+    <!--自定义类型转换器-->
+    <bean id="validMessageConverter" class="com.xujinxin.datasync.util.activemq.ValidMessageConverter"/>
+    <!--自定义异常类-->
+    <bean id="jmsErrorHandler" class="com.xujinxin.datasync.util.activemq.JmsErrorHandler"/>
+
+</beans>
