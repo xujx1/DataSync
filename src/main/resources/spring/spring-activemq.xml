@@ -28,7 +28,7 @@
         <property name="sessionCacheSize" value="${activemq.sessionCacheSize}"/>
     </bean>
 
-    <!-- 监听queue-->
+    <!-- queue-->
     <bean id="queueListenerContainerFactory" class="org.springframework.jms.config.DefaultJmsListenerContainerFactory">
         <property name="connectionFactory" ref="simpleJmsConnectionFactory"/>
         <property name="errorHandler" ref="jmsErrorHandler"/>
@@ -36,16 +36,24 @@
         <property name="messageConverter" ref="validMessageConverter"/>
     </bean>
 
-    <!-- 监听topic-->
+    <!-- topic-->
+    <bean id="topic" class="org.apache.activemq.command.ActiveMQTopic">
+        <constructor-arg value="${activemq.defaultTopicName}"/>
+    </bean>
+
     <bean id="topicListenerContainerFactory" class="org.springframework.jms.config.DefaultJmsListenerContainerFactory">
         <property name="connectionFactory" ref="simpleJmsConnectionFactory"/>
         <property name="errorHandler" ref="jmsErrorHandler"/>
+        <property name="messageConverter" ref="validMessageConverter"/>
+        <property name="pubSubDomain" value="true"/>
     </bean>
 
     <!-- JMS Template -->
     <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
         <!-- 设置消息保存时间-->
         <property name="connectionFactory" ref="simpleJmsConnectionFactory"/>
+        <!-- 设置Topic-Queue区别标识-->
+        <property name="deliveryPersistent" value="true"/>
         <property name="explicitQosEnabled" value="true"/>
         <property name="timeToLive" value="${activemq.timeToLive}"/>
     </bean>

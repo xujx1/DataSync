@@ -3,22 +3,34 @@ package com.xujinxin.datasync.util.activemq;
 import com.xujinxin.datasync.bean.User;
 import com.xujinxin.datasync.enums.ErrorType;
 import com.xujinxin.datasync.exception.ValidException;
+import com.xujinxin.datasync.util.SerializeService;
+import org.apache.activemq.command.ActiveMQTopic;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jms.annotation.JmsListener;
+import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ActiveMqOperationService {
+public class ActiveMqOperationService<T> {
 
     private static final Logger LOGGER = LogManager.getLogger();
     private static final String sql = "insert into user(username,password) values(?,?)";
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
+
+    @Autowired
+    private ActiveMQTopic topic;
+
+    @Autowired
+    private JmsTemplate jmsTemplate;
+
+    @Autowired
+    private SerializeService serializeService;
 
     @JmsListener(destination = "queue.data.sync", containerFactory = "queueListenerContainerFactory")
     public void receive(User user) {
@@ -32,5 +44,15 @@ public class ActiveMqOperationService {
         if (rows == 0) {
             LOGGER.error("注册失败{}", user);
         }
+    }
+
+    @JmsListener(destination = "topic.data.sync", containerFactory = "topicListenerContainerFactory")
+    public void listen(User user) {
+        LOGGER.info(user);
+    }
+
+    public void send(User user) {
+        LOGGER.info(user.toString());
+        jmsTemplate.convertAndSend(topic, serializeService.serialize(user));
     }
 }
