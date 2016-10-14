@@ -19,7 +19,7 @@ public class UserController {
     private UserService userService;
 
     @Autowired
-    private ActiveMqOperationService<User> activeMqOperationService;
+    private ActiveMqOperationService activeMqOperationService;
 
     @RequestMapping(value = "/select-all", method = RequestMethod.GET)
     @ResponseBody

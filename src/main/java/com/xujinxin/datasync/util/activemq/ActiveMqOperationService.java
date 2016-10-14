@@ -19,6 +19,7 @@ public class ActiveMqOperationService<T> {
 
     private static final Logger LOGGER = LogManager.getLogger();
     private static final String sql = "insert into user(username,password) values(?,?)";
+    private static final Integer dbIndex = 1;
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
@@ -32,8 +33,9 @@ public class ActiveMqOperationService<T> {
     @Autowired
     private SerializeService serializeService;
 
+
     @JmsListener(destination = "queue.data.sync", containerFactory = "queueListenerContainerFactory")
-    public void receive(User user) {
+    private void receive(User user) {
         LOGGER.info(user);
         String username = user.getUsername();
         String password = user.getPassword();
@@ -47,7 +49,7 @@ public class ActiveMqOperationService<T> {
     }
 
     @JmsListener(destination = "topic.data.sync", containerFactory = "topicListenerContainerFactory")
-    public void listen(User user) {
+    private void listen(User user) {
         LOGGER.info(user);
     }
 
