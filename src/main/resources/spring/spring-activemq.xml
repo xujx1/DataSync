@@ -63,4 +63,9 @@
     <!--自定义异常类-->
     <bean id="jmsErrorHandler" class="com.xujinxin.datasync.util.activemq.JmsErrorHandler"/>
 
+    <!--在这边写ActiveMqOperationService注入
+    不用@Service，
+    是为了单元测试的时候不加载这个类-->
+    <bean id="activeMqOperationService" class="com.xujinxin.datasync.util.activemq.ActiveMqOperationService"/>
+
 </beans>

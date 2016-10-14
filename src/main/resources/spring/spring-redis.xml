@@ -18,8 +18,10 @@
         <property name="hostName" value="${redis.host}"/>
         <property name="port" value="${redis.port}"/>
         <property name="timeout" value="${redis.timeout}"/>
+        <!--默认redis数据库-->
         <property name="database" value="${redis.database}"/>
-        <constructor-arg index="0" ref="jedisPoolConfig"/>
+        <!--引入jedis pool-->
+        <property name="poolConfig" ref="jedisPoolConfig"/>
     </bean>
 
     <!-- jedis pool配置 -->
