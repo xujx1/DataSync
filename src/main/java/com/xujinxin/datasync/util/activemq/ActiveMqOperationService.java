@@ -12,14 +12,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.jms.core.JmsTemplate;
-import org.springframework.stereotype.Service;
 
-@Service
-public class ActiveMqOperationService<T> {
+public class ActiveMqOperationService {
 
     private static final Logger LOGGER = LogManager.getLogger();
     private static final String sql = "insert into user(username,password) values(?,?)";
-    private static final Integer dbIndex = 1;
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
