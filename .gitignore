@@ -12,8 +12,6 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
-
-.gitignore
 .idea/artifacts/DataSync_war.xml
 .idea/libraries/Maven__org_apache_activemq_activemq_all_5_14_1.xml
 .idea/libraries/Maven__org_mongodb_mongo_java_driver_2_13_0.xml
@@ -22,22 +20,8 @@ hs_err_pid*
 .idea/libraries/Maven__org_springframework_data_spring_data_mongodb_1_7_2_RELEASE.xml
 .idea/libraries/Maven__org_springframework_spring_jms_4_1_7_RELEASE.xml
 .idea/libraries/Maven__org_springframework_spring_messaging_4_1_7_RELEASE.xml
-src/main/java/com/xujinxin/datasync/controller/MongodbController.java
-src/main/java/com/xujinxin/datasync/dao/
-src/main/java/com/xujinxin/datasync/util/Pager.java
-src/main/resources/properties/mongodb.properties
-src/main/resources/spring/spring-mongodb.xml
-src/main/webapp/resource/
 target/apache-tomcat-maven-plugin/
-target/classes/com/xujinxin/datasync/controller/MongodbController.class
-target/classes/com/xujinxin/datasync/dao/mongodb/
-target/classes/com/xujinxin/datasync/dao/mybatis/
-target/classes/com/xujinxin/datasync/util/Pager.class
-target/classes/com/xujinxin/datasync/util/activemq/
-target/classes/properties/activemq.properties
-target/classes/properties/mongodb.properties
-target/classes/spring/spring-activemq.xml
-target/classes/spring/spring-mongodb.xml
+target/classes/
 target/generated-sources/
 target/tomcat/logs/access_log.2016-10-19
 target/tomcat/webapps/
