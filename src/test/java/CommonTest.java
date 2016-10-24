@@ -75,6 +75,6 @@ public class CommonTest extends SpringTestCase {
 
     @Test
     public void restTemplateTest() {
-        System.out.println( restTemplate.getForEntity("http://localhost:8080/DataSync/user/selectAll", ResponseVo.class).getBody());
+        System.out.println( restTemplate.getForEntity("http://localhost:8080/DataSync/user/select-all", ResponseVo.class).getBody());
     }
 }

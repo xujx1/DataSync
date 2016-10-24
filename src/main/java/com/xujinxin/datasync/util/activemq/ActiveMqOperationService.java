@@ -45,9 +45,15 @@ public class ActiveMqOperationService {
         }
     }
 
+    /*设置多监听伪造分布式集群*/
     @JmsListener(destination = "topic.data.sync", containerFactory = "topicListenerContainerFactory")
-    private void listen(User user) {
-        LOGGER.info(user);
+    private void listen1(User user) {
+        LOGGER.info("listen1" + user);
+    }
+
+    @JmsListener(destination = "topic.data.sync", containerFactory = "topicListenerContainerFactory")
+    private void listen2(User user) {
+        LOGGER.info("listen2" + user);
     }
 
     public void send(User user) {

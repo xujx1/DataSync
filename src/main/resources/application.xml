@@ -11,8 +11,7 @@
     <context:annotation-config/>
 
     <!-- 自动扫描注解的bean -->
-    <context:component-scan base-package="com.xujinxin.datasync.service"/>
-    <context:component-scan base-package="com.xujinxin.datasync.util"/>
+    <context:component-scan base-package="com.xujinxin.datasync"/>
     <!-- 引入配置文件 -->
     <context:property-placeholder location="classpath*:properties/*.properties"/>
 
@@ -23,6 +22,6 @@
     <import resource="classpath*:spring/spring-mybatis.xml"/>
     <import resource="classpath*:spring/spring-rest.xml"/>
     <!--TODO 为什么这边引入了spring-activemq.xml 单元测试就会报加载配置文件异常错误-->
+    <import resource="classpath*:spring/spring-mvc.xml"/>
     <import resource="classpath*:spring/spring-activemq.xml"/>
-
 </beans>
