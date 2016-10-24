@@ -1,1 +1,4 @@
+这个工程已经初步完成，虽然没有实现最初的数据同步功能(数据库与redis之间实现数据同步)
+这个项目是使用spring+springMvc+myBaits+springJdbc构建的一个项目的基础建设
+主要涉及的技术层面有：activemq的队列与主题的操作、redis缓存的操作、spring定时任务、spring aop、方法拦截器、springMvc统一异常拦截处理
 本人应届毕业生，新手一名，代码写的不好的地方求喷，QQ：153268908
